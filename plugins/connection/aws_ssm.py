@@ -612,7 +612,7 @@ class Connection(ConnectionBase):
                 put_command_headers, in_path,
                 self._get_url('put_object', self.get_option('bucket_name'), s3_path, 'PUT', profile_name,
                               extra_args=put_args))
-            get_command = "curl '%s' -o '%s'" % (
+            get_command = "curl -L '%s' -o '%s'" % (
                 self._get_url('get_object', self.get_option('bucket_name'), s3_path, 'GET', profile_name), out_path)
 
         client = self._get_boto_client('s3', profile_name=profile_name)

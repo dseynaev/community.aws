@@ -541,7 +541,7 @@ class Connection(ConnectionBase):
         )
         bucket_region_name = bucket_location['LocationConstraint']
 
-        client = self._get_boto_client('s3', region_name=bucket_region_name, profile_name=profile_name)
+        client = self._get_boto_client('s3', region_name=bucket_region_name, profile_name=profile_name, endpoint_url="https://s3-eu-west-1.amazonaws.com")
         params = {'Bucket': bucket_name, 'Key': out_path}
         if extra_args is not None:
             params.update(extra_args)

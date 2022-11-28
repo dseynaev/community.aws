@@ -547,7 +547,7 @@ class Connection(ConnectionBase):
             params.update(extra_args)
         return client.generate_presigned_url(client_method, Params=params, ExpiresIn=3600, HttpMethod=http_method)
 
-    def _get_boto_client(self, service, region_name=None, profile_name=None):
+    def _get_boto_client(self, service, region_name=None, profile_name=None, **extra_client_args):
         ''' Gets a boto3 client based on the STS token '''
 
         aws_access_key_id = self.get_option('access_key_id')
@@ -575,7 +575,8 @@ class Connection(ConnectionBase):
 
         client = session.client(
             service,
-            config=Config(signature_version="s3v4")
+            config=Config(signature_version="s3v4"),
+            **extra_client_args
         )
         return client
 

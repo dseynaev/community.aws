@@ -536,7 +536,7 @@ class Connection(ConnectionBase):
 
         region_name = self.get_option('region') or 'us-east-1'
 
-        bucket_location = self._get_boto_client('s3', region_name=region_name, profile_name=profile_name).get_bucket_location(
+        bucket_location = self._get_boto_client('s3', region_name=region_name, profile_name=profile_name, endpoint_url="https://s3-eu-west-1.amazonaws.com").get_bucket_location(
             Bucket=(self.get_option('bucket_name')),
         )
         bucket_region_name = bucket_location['LocationConstraint']
